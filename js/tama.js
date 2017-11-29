@@ -37,48 +37,32 @@ export class Tamagotchi {
     }
 
     feed() {
-      this.foodLevel = 10;
+      this.foodLevel = this.foodLevel + 1;
+      return this.foodLevel;
     }
 
     play(){
-      this.happinessLevel = 10;
+      this.happinessLevel = this.happinessLevel + 1;
+      return this.happinessLevel;
     }
 
     rest(){
-      this.restLevel = 10;
+      this.restLevel = this.restLevel + 1;
+      return this.restLevel;
     }
 
 
     timePass(){
-        this.foodLevel--;
-        this.happinessLevel--;
-        this.restLevel--;
-      }
 
+        if (this.dead() === true) {
+            $("#output").hide();
+            $("#dead").show();
+        } else {
+            this.foodLevel--;
+            this.happinessLevel--;
+            this.restLevel--;
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 
 }
