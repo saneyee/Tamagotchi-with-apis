@@ -4,6 +4,20 @@ import {Tamagotchi} from './../js/tama.js';
 
 $(document).ready(function() {
     let tama = {};
+    let countdown = function() {
+      setInterval(function() {
+        if (tama.foodLevel < 0 || tama.restLevel < 0 || tama.happinessLevel < 0)
+        {
+          $("#output").hide();
+          $("#dead").show();
+        }
+
+          $("#food").text(tama.foodLevel);
+          $("#attention").text(tama.happinessLevel);
+          $("#sleep").text(tama.restLevel);
+
+      },10);
+    };
 
     $('#formOne').submit(function(e) {
         e.preventDefault();
@@ -17,7 +31,9 @@ $(document).ready(function() {
         $('.attention').val("");
         $('.rest').val("");
         tama = new Tamagotchi(petname,food,attention,rest);
-        console.log(tama);
+        tama.setHunger();
+        tama.setAttention();
+        tama.setRest();
 
         $.ajax({
             url: `https://api.giphy.com/v1/gifs/search?q=${petname}&api_key=${apiKey}&limit=3`,
@@ -26,14 +42,7 @@ $(document).ready(function() {
                 format: 'json'
             },
             success: function(response) {
-                // console.dir(response);
                 $('#pic').append("<img src='"+response.data[0].images.fixed_height.url+"' />");
-
-                // if limit > 0;
-
-                // response.data.forEach(function(item){
-                //   $('#pic').append("<img src='"+item.images.fixed_height_still.url+"' />");
-                // });
             },
             error: function() {
                 $('#errors').text("There was an error processing your request. Please try again.");
@@ -46,30 +55,32 @@ $(document).ready(function() {
         $("#food").text(food);
         $("#attention").text(attention);
         $("#sleep").text(rest);
+
+        countdown();
     });
 
 
     $("#feed").click(function(){
         //tama.feed();
-        $("#food").text(tama.feed());
+        tama.feed();
     });
 
     $("#play").click(function(){
 
-        $("#attention").text(tama.play());
+        tama.play();
     });
     $("#rest").click(function(){
 
-        $("#sleep").text(tama.rest());
+        tama.rest();
     });
 
-    $("#timepass").click(function(){
-
-        tama.timePass();
-        
-        $("#food").text(tama.foodLevel);
-        $("#attention").text(tama.happinessLevel);
-        $("#sleep").text(tama.restLevel);
-    });
+    // $("#timepass").click(function(){
+    //
+    //     tama.timePass();
+    //
+    //     // $("#food").text(tama.foodLevel);
+    //     // $("#attention").text(tama.happinessLevel);
+    //     // $("#sleep").text(tama.restLevel);
+    // });
 
 });
