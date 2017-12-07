@@ -25,17 +25,6 @@ export class Tamagotchi {
     }, 1000);
     }
 
-  //
-  // dead() {
-  //     if(this.foodLevel <= 0 || this.happinessLevel <= 0 || this.restLevel <= 0)
-  //     {
-  //       return true;
-  //     }
-  //     else{
-  //       return false;
-  //     }
-  //   }
-
     feed() {
       this.foodLevel = this.foodLevel + 1;
       return this.foodLevel;
@@ -50,19 +39,4 @@ export class Tamagotchi {
       this.restLevel = this.restLevel + 1;
       return this.restLevel;
     }
-
-
-    // timePass(){
-    //
-    //     if (this.dead() === true) {
-    //         $("#output").hide();
-    //         $("#dead").show();
-    //     } else {
-    //         this.foodLevel--;
-    //         this.happinessLevel--;
-    //         this.restLevel--;
-    //     }
-    //
-    // }
-
 }

@@ -29,26 +29,6 @@ describe('Tamagotchi', function() {
     expect(snoopy.restLevel).toEqual(7);
   });
 
-  // it('should get very hungry if the food level drops below zero', function() {
-  //   snoopy.foodLevel = 0;
-  //   expect(snoopy.setHunger()).toEqual(true);
-  // });
-
-  // it('should get very hungry if 10 seconds pass without feeding', function() {
-  //   jasmine.clock().tick(10001);
-  //   expect(snoopy.setHunger()).toEqual(true);
-  // });
-  //
-  // it('should be very unhappy if 10 seconds pass without playing', function() {
-  //   jasmine.clock().tick(10001);
-  //   expect(snoopy.setAttention()).toEqual(true);
-  // });
-  //
-  // it('should be very sleepy if 10 seconds pass without rest', function() {
-  //   jasmine.clock().tick(10001);
-  //   expect(snoopy.setRest()).toEqual(true);
-  // });
-
   it('should have a food level of 10, happiness level of 5 if it is fed', function() {
     jasmine.clock().tick(9001);
     snoopy.feed();
@@ -65,15 +45,5 @@ describe('Tamagotchi', function() {
     snoopy.rest();
     expect(snoopy.restLevel).toEqual(10);
   });
-
-  it('should have a rest,food,attention level of 0 if they do timePass', function() {
-    snoopy.timePass();
-    expect(snoopy.restLevel).toEqual(9);
-    expect(snoopy.foodLevel).toEqual(-9);
-    expect(snoopy.happinessLevel).toEqual(0);
-  });
-
-
-
 
 });
